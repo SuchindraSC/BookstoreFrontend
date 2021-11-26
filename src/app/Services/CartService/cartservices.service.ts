@@ -2,37 +2,38 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpservicesService } from '../HttpService/httpservices.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class CartservicesService {
   user = JSON.parse(localStorage.getItem('BookStoreUser')!);
   constructor(private http: HttpservicesService) {}
-  header: any;
+  header: any = { headers: { Authorization: 'Bearer ' + this.user.token } };
 
-  getToken() {
-    this.header = {
-      headers: { Authorization: 'Bearer ' + this.user.token },
-    };
-  }
+  // getToken() {
+  //   this.header = {
+  //     headers: { Authorization: 'Bearer ' + this.user.token },
+  //   };
+  // }
 
   AddBooktoCart(book: any) {
     let params = {
       UserId: this.user.userId,
       BookId: book.bookId,
     };
-    this.getToken();
+    console.log(params);
+    console.log(this.header);
+    //this.getToken();
     return this.http.post(
-      `${environment.baseUrl}/api/Cart/Cart`,
-      params,
+      `${environment.baseUrl}/api/cartaddbook?bookId=${book.bookId}&userId=${this.user.userId}`,
+      null,
       true,
       this.header
     );
   }
 
   ReduceBookCountInCart(param: any) {
-    this.getToken();
+    //this.getToken();
     return this.http.put(
       `${environment.baseUrl}/api/Cart/Cart`,
       param,
@@ -42,18 +43,27 @@ export class CartservicesService {
   }
 
   RemoveBookFromCart(cartId: any) {
-    this.getToken();
+    //this.getToken();
     return this.http.delete(
-      `${environment.baseUrl}/api/Cart/Cart?cartId=${cartId}`,
+      `${environment.baseUrl}/api/cartdeletebook?cartId=${cartId}`,
       true,
       this.header
     );
   }
 
   GetCart() {
-    this.getToken();
+    //this.getToken();
     return this.http.get(
-      `${environment.baseUrl}/api/Cart/Cart?userId=${this.user.userId}`,
+      `${environment.baseUrl}/api/cartgetbooks?userId=${this.user.userId}`,
+      true,
+      this.header
+    );
+  }
+
+  updatecart(cartbook: any) {
+    return this.http.put(
+      `${environment.baseUrl}/api/cartupdatebook?cartId={cartbook.cartId}&quantityToBuy={cartbook.quantityToBuy}`,
+      null,
       true,
       this.header
     );

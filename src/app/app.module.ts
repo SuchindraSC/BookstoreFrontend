@@ -15,13 +15,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ForgotpasswordComponent } from './Components/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './Components/resetpassword/resetpassword.component';
 import { HomeComponent } from './Components/home/home.component';
 import { BookdescriptionComponent } from './Components/bookdescription/bookdescription.component';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { PersonaldetailsComponent } from './Components/personaldetails/personaldetails.component';
+
+import { CartComponent } from './Components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +37,9 @@ import { BookdescriptionComponent } from './Components/bookdescription/bookdescr
     ResetpasswordComponent,
     HomeComponent,
     BookdescriptionComponent,
+    WishlistComponent,
+    PersonaldetailsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +55,8 @@ import { BookdescriptionComponent } from './Components/bookdescription/bookdescr
     MatCardModule,
     MatMenuModule,
     MatBadgeModule,
+    MatButtonModule,
+    NgxStarRatingModule,
     NgxPaginationModule,
     HttpClientModule,
   ],

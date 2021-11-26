@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'resetpassword/:token/:CustomerId',
     component: ResetpasswordComponent,
   },
-  { path: 'home', component: HomeComponent}
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({

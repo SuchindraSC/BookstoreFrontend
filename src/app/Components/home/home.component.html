@@ -6,46 +6,7 @@
       [class]="isSearch ? 'media-Logo' : ''"
       (click)="option = 'Home'"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="31.039"
-        height="23.713"
-        viewBox="0 0 31.039 23.713"
-      >
-        <defs>
-          <style>
-            .a {
-              fill: #fff;
-            }
-          </style>
-        </defs>
-        <g transform="translate(0 -35.048)">
-          <g transform="translate(0 35.048)">
-            <g transform="translate(0 0)">
-              <path
-                class="a"
-                d="M35.941,35.049h0a1.1,1.1,0,0,0-.778.322,1.106,1.106,0,0,0-.327.788V52.815a1.114,1.114,0,0,0,1.112,1.11c2.585.006,6.917.545,9.9,3.672V40.167A1.064,1.064,0,0,0,45.7,39.6C43.245,35.655,38.532,35.055,35.941,35.049Z"
-                transform="translate(-31.193 -35.049)"
-              />
-              <path
-                class="a"
-                d="M167.768,52.814V36.159a1.106,1.106,0,0,0-.327-.788,1.1,1.1,0,0,0-.778-.322h0c-2.591.006-7.3.606-9.757,4.556a1.064,1.064,0,0,0-.153.562V57.6c2.988-3.127,7.32-3.666,9.9-3.672A1.114,1.114,0,0,0,167.768,52.814Z"
-                transform="translate(-140.369 -35.048)"
-              />
-              <path
-                class="a"
-                d="M183.489,71.8h-.805V85.726a2.842,2.842,0,0,1-2.832,2.835c-2.193.005-5.809.434-8.369,2.858a26.738,26.738,0,0,1,11.758.227,1.111,1.111,0,0,0,1.359-1.082V72.912A1.112,1.112,0,0,0,183.489,71.8Z"
-                transform="translate(-153.561 -67.96)"
-              />
-              <path
-                class="a"
-                d="M1.916,85.726V71.8H1.111A1.112,1.112,0,0,0,0,72.912V90.563a1.111,1.111,0,0,0,1.359,1.082,26.737,26.737,0,0,1,11.758-.227c-2.561-2.424-6.176-2.852-8.369-2.857A2.842,2.842,0,0,1,1.916,85.726Z"
-                transform="translate(0 -67.96)"
-              />
-            </g>
-          </g>
-        </g>
-      </svg>
+      <img class="logo" src="../../../assets/book.png" alt="" />
       <p>Bookstore</p>
     </div>
     <div class="search-div" [class]="isSearch ? 'media-search-div' : ''">
@@ -89,12 +50,15 @@
       </div>
       <div class="cart">
         <span
-          matBadge="{{ getCart.length > 0 ? getCart.length : '' }}"
+          matBadge="{{
+            getCart != undefined && getCart.length > 0 ? getCart.length : ''
+          }}"
           matBadgeOverlap="false"
-          ><i class="material-icons-outlined icon" (click)="option = 'Cart'"
-            >shopping_cart</i
-          ></span
         >
+          <i class="material-icons-outlined icon" (click)="option = 'Cart'"
+            >shopping_cart</i
+          >
+        </span>
         <p>Cart</p>
       </div>
     </div>
@@ -279,7 +243,7 @@
     </div>
 
     <div class="book-wrap" *ngIf="option == 'Home'">
-      <div
+      <!-- <div
         class="book-comp"
         *ngFor="
           let book of books | paginate: { itemsPerPage: 12, currentPage: p }
@@ -289,112 +253,51 @@
           bookdetails = book;
           bookId = book['bookId']
         "
+      > -->
+      <div
+        class="book-comp"
+        *ngFor="let book of books"
+        (click)="
+          option = 'BookDescription';
+          bookdetails = book;
+          bookId = book['bookId']
+        "
       >
-        <div class="Message opac" *ngIf="book['bookQuantity'] == 0">
+        <div class="Message opac" *ngIf="book['quantity'] == 0">
           <div class="out">Out of stock</div>
         </div>
-        <div class="Message" *ngIf="book['bookQuantity'] > 0">
+        <div class="Message" *ngIf="book['quantity'] > 0">
           <div class="quick">Quick view</div>
         </div>
         <div class="book-img">
-          <img src="{{ book['bookImage'] }}" alt="" width="110px"/>
+          <img src="{{ book['bookImage'] }}" alt="" width="110px" />
         </div>
         <div class="book-content">
-          <p class="book-name">{{ book["title"] }}</p>
-          <p class="author-name">{{ book["authorName"] }}</p>
+          <p class="book-name">{{ book["bookName"] }}</p>
+          <p class="author-name">{{ book["author"] }}</p>
           <div style="display: flex; align-items: center">
             <div class="rating">
-              <p>{{ book["rating"] }}</p>
+              <p>4.5</p>
               <i class="material-icons">star</i>
             </div>
             <p class="rating-count">({{ 20 }})</p>
           </div>
           <div class="cost">
-            Rs. {{ book["price"] }}
-            <p>Rs.{{ book["price"] + 500 }}</p>
+            Rs. {{ book["discountPrice"] }}
+            <p>Rs.{{ book["price"] }}</p>
           </div>
         </div>
       </div>
     </div>
 
     <div>
-      <!-- <app-wishlist *ngIf="option == 'WishList'"></app-wishlist> -->
+      <app-wishlist *ngIf="option == 'WishList'"></app-wishlist>
       <div *ngIf="option == 'wishlistLogout'">
         <div class="maincontent">
           <div class="middleItem">
             <h2 style="margin: 0 0 10px 0">PLEASE LOG IN</h2>
             <P class="p-tag">Login to view items in your wishlist</P>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="66.399"
-              height="72.51"
-              viewBox="0 0 66.399 72.51"
-            >
-              <defs>
-                <style>
-                  .a {
-                    fill: #9d9d9d;
-                  }
-                  .b {
-                    fill: #ef505a;
-                  }
-                </style>
-              </defs>
-              <g transform="translate(-0.057)">
-                <g transform="translate(0.057)">
-                  <path
-                    class="a"
-                    d="M38.838,70.093H49.714a1.209,1.209,0,0,0,.854-.354l14.5-14.5a1.209,1.209,0,0,0,.354-.854V6.042A6.05,6.05,0,0,0,59.382,0H11.042A6.05,6.05,0,0,0,5,6.042V26.587a1.208,1.208,0,1,0,2.417,0V6.042a3.626,3.626,0,0,1,3.625-3.625h48.34a3.626,3.626,0,0,1,3.625,3.625V53.174H54.548a6.05,6.05,0,0,0-6.042,6.042v8.459H38.838a1.208,1.208,0,1,0,0,2.417Zm15.71-14.5H61.3L50.923,65.967V59.216A3.626,3.626,0,0,1,54.548,55.591Z"
-                    transform="translate(0.974)"
-                  />
-                  <path
-                    class="a"
-                    d="M12.208,8.417h2.417a1.208,1.208,0,0,0,0-2.417H12.208a1.208,1.208,0,1,0,0,2.417Z"
-                    transform="translate(2.225 1.251)"
-                  />
-                  <path
-                    class="a"
-                    d="M54.463,6H18.208a1.208,1.208,0,0,0,0,2.417H54.463a1.208,1.208,0,0,0,0-2.417Z"
-                    transform="translate(3.476 1.251)"
-                  />
-                  <path
-                    class="a"
-                    d="M12.208,14.417h2.417a1.208,1.208,0,0,0,0-2.417H12.208a1.208,1.208,0,1,0,0,2.417Z"
-                    transform="translate(2.225 2.502)"
-                  />
-                  <path
-                    class="a"
-                    d="M18.208,14.417H46A1.208,1.208,0,1,0,46,12h-27.8a1.208,1.208,0,0,0,0,2.417Z"
-                    transform="translate(3.476 2.502)"
-                  />
-                  <path
-                    class="a"
-                    d="M12.208,20.417h2.417a1.208,1.208,0,0,0,0-2.417H12.208a1.208,1.208,0,1,0,0,2.417Z"
-                    transform="translate(2.225 3.753)"
-                  />
-                  <path
-                    class="a"
-                    d="M18.208,20.417H37.544a1.208,1.208,0,0,0,0-2.417H18.208a1.208,1.208,0,0,0,0,2.417Z"
-                    transform="translate(3.476 3.753)"
-                  />
-                  <path
-                    class="a"
-                    d="M51.417,21.208a1.208,1.208,0,1,0-2.417,0V38.127a1.208,1.208,0,1,0,2.417,0Z"
-                    transform="translate(10.148 4.17)"
-                  />
-                  <path
-                    class="a"
-                    d="M50.208,38A1.208,1.208,0,0,0,49,39.208v2.417a1.208,1.208,0,1,0,2.417,0V39.208A1.209,1.209,0,0,0,50.208,38Z"
-                    transform="translate(10.148 7.923)"
-                  />
-                  <path
-                    class="b"
-                    d="M23.219,67.22a1.209,1.209,0,0,0,.738,0c17.1-5.483,23.162-18,23.162-27.061,0-8.45-5.438-15.068-12.37-15.068a16.345,16.345,0,0,0-11.162,4.435,16.347,16.347,0,0,0-11.162-4.435C5.49,25.092.057,31.71.057,40.16.057,49.216,6.122,61.739,23.219,67.22ZM15.555,45.786c3.887.029,6.331-.818,8.967,2.039L7.869,28.414,2.474,40.16l.835,9.168,4.56,7.136L23.957,64.8l15.487-8.334-.766-28.05L23.887,37.186c-1.43,1.235-.7,14.238,3.19,14.208,5.581,0-4.69-11.578-4.69-4.487,0,8.179,15.575-2.723,0,2.42-15.57-5.143-14.667-.656-14.667-8.835,0-7.094,2.255,5.293,7.835,5.293Z"
-                    transform="translate(-0.057 5.232)"
-                  />
-                </g>
-              </g>
-            </svg>
+            <img class="logo" src="../../../assets/wishlist.svg" alt="" />
             <button
               mat-stroked-button
               color="warn"
@@ -409,20 +312,20 @@
     </div>
     <!-- <div>
       <app-order *ngIf="option == 'orders'"></app-order>
-    </div>
-    <app-book-description
+    </div> -->
+    <app-bookdescription
       *ngIf="option == 'BookDescription'"
       [bookdetails]="bookdetails"
       (init)="ngOnInit()"
-    ></app-book-description>
-    <app-persondetail
+    ></app-bookdescription>
+    <app-personaldetails
       *ngIf="option == 'PersonDetail'"
       (init)="ngOnInit()"
-    ></app-persondetail>
-    <app-cart *ngIf="option == 'Cart'" (init)="ngOnInit()"></app-cart> -->
-    <div class="page" *ngIf="option == 'Home'">
+    ></app-personaldetails>
+    <app-cart *ngIf="option == 'Cart'" (init)="ngOnInit()"></app-cart>
+    <!-- <div class="page" *ngIf="option == 'Home'">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+    </div-->
   </div>
   <mat-menu #profilemenu="matMenu" class="profilemenu">
     <div class="profile-main-div">

@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
       console.log(result);
     });
   }
+  
   sort(num: any) {
     if (num == 1) {
       this.books.sort((a: any, b: any) => (a.price > b.price ? 1 : -1));
@@ -74,6 +75,7 @@ export class HomeComponent implements OnInit {
       });
     }
   }
+
   GetCart() {
     this.cartService.GetCart().subscribe((result: any) => {
       this.getCart = result.data;

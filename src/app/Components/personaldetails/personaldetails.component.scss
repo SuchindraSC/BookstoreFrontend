@@ -1,0 +1,168 @@
+.main-div {
+  width: 40vw;
+  margin-bottom: 50px;
+}
+.edit-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .person-det {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  .edit {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: #a03037;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-left: 7px;
+    cursor: pointer;
+  }
+}
+.temp {
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+.save {
+  background-color: #3371b5;
+  color: white;
+  width: 76px;
+  height: 33px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.user-det {
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    label {
+      margin-bottom: 5px;
+    }
+    input {
+      height: 45px;
+      border: 1px solid #e2e2e2 !important;
+      border-radius: 2px !important;
+      font-size: 20px;
+      line-height: 20px;
+      color: #0a0102;
+      padding-left: 16px;
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}
+.address-head {
+  margin-top: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  p {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  button {
+    background: white;
+    border: 1px solid #a03037;
+    border-radius: 2px;
+    height: 29px;
+    width: 123px;
+    font-size: 12px;
+    line-height: 16px;
+    font-family: "Roboto", sans-serif;
+    color: #a03037;
+  }
+}
+.add-details {
+  margin-bottom: 25px !important;
+  margin-top: 20px;
+  div {
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 5px;
+    }
+  }
+}
+#address-area {
+  resize: none;
+  width: 99%;
+  height: 82px;
+}
+.c-t-div {
+  display: flex !important;
+  flex-direction: row !important;
+  margin-top: 30px !important;
+  justify-content: space-between !important;
+  div {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 48% !important;
+    input {
+      height: 45px;
+      width: 98%;
+    }
+  }
+}
+.radios {
+  margin-top: 35px;
+  margin-bottom: 50px;
+  width: 70%;
+  div {
+    flex-direction: row;
+    justify-content: space-between;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      label {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1025px) {
+  ::ng-deep .footer {
+    position: fixed !important;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .main-div {
+    width: 60vw;
+  }
+}
+@media only screen and (max-width: 596px) {
+  .main-div {
+    width: 70vw;
+  }
+  .address-head {
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-bottom: 20px;
+    }
+  }
+  .c-t-div {
+    display: flex;
+    flex-direction: column !important;
+    div {
+      width: 100% !important;
+      label {
+        margin-bottom: 10px;
+      }
+    }
+  }
+  #address-area {
+    margin-top: 10px;
+  }
+}

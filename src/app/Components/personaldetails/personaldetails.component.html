@@ -1,0 +1,237 @@
+<div class="main-div">
+  <div class="edit-head">
+    <div style="display: flex; align-items: center">
+      <p class="person-det">Person Details</p>
+      <p class="edit" (click)="edit = !edit">{{ !edit ? "Edit" : "Cancel" }}</p>
+    </div>
+    <button mat-button *ngIf="edit" class="save">SAVE</button>
+  </div>
+  <div class="user-det" [formGroup]="PersonForm">
+    <div>
+      <label for="fullName">Full Name</label>
+      <input
+        type="text"
+        name="fullName"
+        id=""
+        [attr.disabled]="!edit ? '' : null"
+        [ngModel]="user['fullName']"
+        formControlName="fullname"
+      />
+    </div>
+    <div>
+      <label for="EmailId">Email Id</label>
+      <input
+        type="email"
+        name="EmailId"
+        id=""
+        [attr.disabled]="!edit ? '' : null"
+        [ngModel]="user['emailId']"
+        formControlName="email"
+      />
+    </div>
+    <div>
+      <label for="Password">Password</label>
+      <input
+        type="password"
+        name="Password"
+        [attr.disabled]="!edit ? '' : null"
+        id=""
+        [ngModel]="Password"
+        formControlName="password"
+      />
+    </div>
+    <div>
+      <label for="Mobile">Mobile Number</label>
+      <input
+        type="text"
+        name="Mobile"
+        id=""
+        [attr.disabled]="!edit ? '' : null"
+        [ngModel]="user['mobileNumber']"
+        formControlName="mobile"
+      />
+    </div>
+  </div>
+
+  <div class="address-head">
+    <p>Address Details</p>
+    <button mat-button (click)="address = true">Add New Address</button>
+  </div>
+  <div>
+    <div class="add-details" [formGroup]="AddressForm" *ngIf="address">
+      <div>
+        <label for="address">Address</label>
+        <textarea
+          name="address"
+          id="address-area"
+          formControlName="address"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="c-t-div">
+        <div style="margin-right: 30px !important">
+          <label for="city">City/Town</label>
+          <input type="text" formControlName="city" name="city" id="" />
+        </div>
+        <div>
+          <label for="state">State</label>
+          <input formControlName="state" name="state" type="text" />
+        </div>
+      </div>
+      <div class="radios">
+        <label for="">Type</label>
+        <div>
+          <div class="radio-item">
+            <input
+              formControlName="type"
+              type="radio"
+              name="type"
+              value="Home"
+            />
+            <label for="Home">Home</label>
+          </div>
+          <div class="radio-item">
+            <input
+              formControlName="type"
+              type="radio"
+              name="type"
+              value="Work"
+            />
+            <label for="Work">Work</label>
+          </div>
+          <div class="radio-item">
+            <input
+              formControlName="type"
+              type="radio"
+              name="type"
+              value="Others"
+            />
+            <label for="Others">Others</label>
+          </div>
+        </div>
+      </div>
+      <div style="flex-direction: row; justify-content: space-between">
+        <button mat-button class="save" (click)="address = false">
+          Cancel
+        </button>
+        <button mat-button (click)="addAddress()" class="save">Save</button>
+      </div>
+    </div>
+    <div *ngFor="let address of userAddress; let i = index">
+      <div class="edit-head">
+        <div style="display: flex; align-items: center">
+          <input
+            type="radio"
+            name="typeMain"
+            (change)="expand = true; change(address)"
+            style="margin-top: 0px"
+          />
+          <label class="person-det" for="type" style="margin-left: 5px"
+            >{{ i + 1 }}. {{ address["type"] }}</label
+          >
+          <p
+            class="edit"
+            (click)="addedit = !addedit"
+            *ngIf="address['addressId'] == checked"
+          >
+            {{ !addedit ? "Edit" : "Cancel" }}
+          </p>
+        </div>
+        <button
+          mat-button
+          *ngIf="addedit && address['addressId'] == checked"
+          class="save"
+          (click)="editaddress(address)"
+        >
+          SAVE
+        </button>
+      </div>
+      <div *ngIf="expand == false" style="margin-left: 20px">
+        <p style="font-weight: 500; margin-bottom: 0px">Address</p>
+        <p style="margin-top: 10px">
+          {{ address["address"] }}, {{ address["city"] }},
+          {{ address["state"] }}
+        </p>
+      </div>
+      <div
+        class="add-details"
+        [formGroup]="AddressForm"
+        *ngIf="checked == address['addressId']"
+      >
+        <div>
+          <label for="address">Address</label>
+          <textarea
+            name="address"
+            id="address-area"
+            formControlName="address"
+            [ngModel]="address['address']"
+            cols="30"
+            rows="10"
+            [attr.disabled]="!addedit ? '' : null"
+          ></textarea>
+        </div>
+        <div class="c-t-div">
+          <div>
+            <label for="city">city/town</label>
+            <input
+              type="text"
+              formControlName="city"
+              [ngModel]="address['city']"
+              [attr.disabled]="!addedit ? '' : null"
+              name="city"
+              id=""
+            />
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input
+              [attr.disabled]="!addedit ? '' : null"
+              [ngModel]="address['state']"
+              formControlName="state"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="radios">
+          <label for="">Type</label>
+          <div>
+            <div class="radio-item">
+              <input
+                formControlName="type"
+                [attr.disabled]="!addedit ? '' : null"
+                [ngModel]="address['type']"
+                type="radio"
+                name="type"
+                value="Home"
+              />
+              <label for="Home">Home</label>
+            </div>
+            <div class="radio-item">
+              <input
+                formControlName="type"
+                [ngModel]="address['type']"
+                [attr.disabled]="!addedit ? '' : null"
+                type="radio"
+                name="type"
+                value="Work"
+              />
+              <label for="Work">Work</label>
+            </div>
+            <div class="radio-item">
+              <input
+                formControlName="type"
+                [ngModel]="address['type']"
+                [attr.disabled]="!addedit ? '' : null"
+                type="radio"
+                name="type"
+                value="Others"
+              />
+              <label for="Others">Others</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
