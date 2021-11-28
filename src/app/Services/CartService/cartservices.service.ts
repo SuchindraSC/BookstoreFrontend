@@ -10,20 +10,8 @@ export class CartservicesService {
   constructor(private http: HttpservicesService) {}
   header: any = { headers: { Authorization: 'Bearer ' + this.user.token } };
 
-  // getToken() {
-  //   this.header = {
-  //     headers: { Authorization: 'Bearer ' + this.user.token },
-  //   };
-  // }
 
   AddBooktoCart(book: any) {
-    let params = {
-      UserId: this.user.userId,
-      BookId: book.bookId,
-    };
-    console.log(params);
-    console.log(this.header);
-    //this.getToken();
     return this.http.post(
       `${environment.baseUrl}/api/cartaddbook?bookId=${book.bookId}&userId=${this.user.userId}`,
       null,
@@ -33,7 +21,6 @@ export class CartservicesService {
   }
 
   ReduceBookCountInCart(param: any) {
-    //this.getToken();
     return this.http.put(
       `${environment.baseUrl}/api/Cart/Cart`,
       param,
@@ -43,7 +30,6 @@ export class CartservicesService {
   }
 
   RemoveBookFromCart(cartId: any) {
-    //this.getToken();
     return this.http.delete(
       `${environment.baseUrl}/api/cartdeletebook?cartId=${cartId}`,
       true,
@@ -52,7 +38,6 @@ export class CartservicesService {
   }
 
   GetCart() {
-    //this.getToken();
     return this.http.get(
       `${environment.baseUrl}/api/cartgetbooks?userId=${this.user.userId}`,
       true,
@@ -62,7 +47,7 @@ export class CartservicesService {
 
   updatecart(cartbook: any) {
     return this.http.put(
-      `${environment.baseUrl}/api/cartupdatebook?cartId={cartbook.cartId}&quantityToBuy={cartbook.quantityToBuy}`,
+      `${environment.baseUrl}/api/cartupdatebook?cartId=${cartbook.cartId}&quantityToBuy=${cartbook.quantityToBuy}`,
       null,
       true,
       this.header

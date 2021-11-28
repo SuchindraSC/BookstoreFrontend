@@ -7,34 +7,31 @@ import { environment } from 'src/environments/environment';
 })
 export class FeedbackservicesService {
   constructor(private http: HttpservicesService) {}
-
-  header: any;
   user = JSON.parse(localStorage.getItem('BookStoreUser')!);
-  getToken() {
-    this.header = {
-      headers: { Authorization: 'Bearer ' + this.user.token },
-    };
-  }
+  header: any = {
+    headers: { Authorization: 'Bearer ' + this.user.token },
+  };
 
   addfeedback(data: any, id: any) {
     let params = {
-      BookId: id,
-      UserName: this.user.fullName,
-      Rating: parseInt(data.rate),
-      Comments: data.comment,
+      userId: parseInt(this.user.userId),
+      BookId: parseInt(id),
+      customerName: this.user.fullName,
+      rating: parseInt(data.rate),
+      feedback: data.comment,
     };
     console.log(params);
-    this.getToken();
     return this.http.post(
-      `${environment.baseUrl}/api/FeedBack/FeedBack`,
+      `${environment.baseUrl}/api/addcustomerfeedBack`,
       params,
       true,
       this.header
     );
   }
+
   getFeedBack(id: any) {
     return this.http.get(
-      `${environment.baseUrl}/api/FeedBack/FeedBack?bookId=${id}`,
+      `${environment.baseUrl}/api/GetFeedback?bookid=${id}`,
       ''
     );
   }

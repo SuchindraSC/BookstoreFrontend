@@ -109,9 +109,11 @@ export class CartComponent implements OnInit {
   }
 
   addtoCart(cartbook: any) {
-    console.log('working');
-    console.log(cartbook);
-    this.cartService.AddBooktoCart(cartbook).subscribe((result: any) => {
+    let obj = {
+      cartId: cartbook.cartId,
+      quantityToBuy: cartbook.quantityToBuy + 1,
+    };
+    this.cartService.updatecart(obj).subscribe((result: any) => {
       console.log(result.message);
       this.snackBar.open(result.message, '', {
         duration: 5000,
@@ -121,16 +123,20 @@ export class CartComponent implements OnInit {
   }
 
   ReduceCount(cartbook: any) {
-    console.log('cartbook');
-    console.log(cartbook);
-    let param = {
-      userId: cartbook.userId,
-      bookId: cartbook.bookId,
+    let obj = {
       cartId: cartbook.cartId,
+      quantityToBuy: cartbook.quantityToBuy - 1,
     };
-    this.cartService.ReduceBookCountInCart(param).subscribe((result: any) => {
+    if (obj.quantityToBuy == 0) {
+      this.RemoveBook(cartbook);
+      return;
+    }
+    this.cartService.updatecart(obj).subscribe((result: any) => {
       console.log(result.message);
-      this.GetCart();
+      this.snackBar.open(result.message, '', {
+        duration: 5000,
+      });
+      this.ngOnInit();
     });
   }
 
@@ -152,5 +158,4 @@ export class CartComponent implements OnInit {
       console.log(this.cartDetails);
     });
   }
-
 }

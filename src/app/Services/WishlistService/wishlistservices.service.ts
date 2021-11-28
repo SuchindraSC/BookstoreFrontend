@@ -18,7 +18,6 @@ export class WishlistservicesService {
       UserId: parseInt(this.user.userId),
       BookId: parseInt(book.bookId),
     };
-    //this.getToken();
     return this.http.post(
       `${environment.baseUrl}/api/wishlist-add-book?bookId=${book.bookId}&userId=${this.user.userId}`,
       null,
@@ -28,7 +27,6 @@ export class WishlistservicesService {
   }
 
   GetWishList() {
-    //this.getToken();
     return this.http.get(
       `${environment.baseUrl}/api/wishlistgetbooks?userId=${this.user.userId}`,
       true,
@@ -43,10 +41,5 @@ export class WishlistservicesService {
       true,
       this.header
     );
-  }
-  getToken() {
-    this.header = {
-      headers: { Authorization: 'Bearer ' + this.user.token },
-    };
   }
 }

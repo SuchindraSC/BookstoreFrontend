@@ -148,14 +148,14 @@
         <div class="w-book" >
           <div class="wb-con">
             <div>
-              <img src="{{cartbook.bookImage}}" alt="" />
+              <img src="{{cartbook.bookId.bookImage}}" alt="" width="100px"/>
             </div>
             <div class="wb-detail">
-              <p class="book-name">{{cartbook.bookName}}</p>
-              <p class="author">{{cartbook.author}}</p>
+              <p class="book-name">{{cartbook.bookId.bookName}}</p>
+              <p class="author">{{cartbook.bookId.author}}</p>
               <div class="cost">
-                <p class="rupees">Rs. {{cartbook.discountPrice}}</p>
-                <p class="disc">Rs. {{cartbook.price}}</p>
+                <p class="rupees">Rs. {{cartbook.bookId.discountPrice}}</p>
+                <p class="disc">Rs. {{cartbook.bookId.price}}</p>
               </div>
             </div>
             <div></div>

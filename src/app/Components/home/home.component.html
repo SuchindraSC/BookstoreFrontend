@@ -82,6 +82,7 @@
           <option value="2">Price: High to low</option>
           <option value="1">Price: Low to High</option>
           <option value="3">Newest Arrivals</option>
+          <option value="4">Popular</option>
         </select>
       </div>
     </div>
@@ -270,17 +271,17 @@
           <div class="quick">Quick view</div>
         </div>
         <div class="book-img">
-          <img src="{{ book['bookImage'] }}" alt="" width="110px" />
+          <img src="{{ book['bookImage'] }}" alt="" width="100px" />
         </div>
         <div class="book-content">
           <p class="book-name">{{ book["bookName"] }}</p>
           <p class="author-name">{{ book["author"] }}</p>
           <div style="display: flex; align-items: center">
             <div class="rating">
-              <p>4.5</p>
+              <p>{{  displayrating(book["rating"]) }}</p>
               <i class="material-icons">star</i>
             </div>
-            <p class="rating-count">({{ 20 }})</p>
+            <p class="rating-count">({{ book["count"] }})</p>
           </div>
           <div class="cost">
             Rs. {{ book["discountPrice"] }}

@@ -43,13 +43,11 @@
       <div style="display: flex; align-items: center">
         <div class="rating">
           <p>
-            {{
-              total / feedBackList.length > 0 ? total / feedBackList.length : 0
-            }}
+            {{ displayrating(bookdetails["rating"]) }}
           </p>
           <i class="material-icons">star</i>
         </div>
-        <p class="rating-count">({{ feedBackList.length }})</p>
+        <p class="rating-count">({{ bookdetails["count"] }})</p>
       </div>
       <div class="cost">
         Rs. {{ bookdetails["discountPrice"] }}
@@ -74,10 +72,10 @@
           "
         >
           <div class="rate">
-            <!-- <ngx-star-rating
+            <ngx-star-rating
               formControlName="rate"
               [id]="'rating'"
-            ></ngx-star-rating> -->
+            ></ngx-star-rating>
           </div>
         </div>
         <textarea
@@ -117,7 +115,7 @@
               font-weight: 500;
             "
           >
-            {{ rating["userName"] }}
+            {{ rating["customerName"] }}
           </p>
           <div style="display: flex; color: #ffce00">
             <ngx-star-rating
@@ -134,7 +132,7 @@
               margin-top: 3px;
             "
           >
-            {{ rating["comments"] }}
+            {{ rating["feedback"] }}
           </p>
         </div>
       </div>

@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { BookservicesService } from 'src/app/Services/BookService/bookservices.service';
 import { WishlistservicesService } from 'src/app/Services/WishlistService/wishlistservices.service';
 import { CartservicesService } from 'src/app/Services/CartService/cartservices.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FeedbackservicesService } from 'src/app/Services/FeedbackService/feedbackservices.service';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 
 @Component({
   selector: 'app-bookdescription',
@@ -22,7 +20,6 @@ export class BookdescriptionComponent implements OnInit {
   total = 0;
   cartDetail: any = [];
   constructor(
-    private book: BookservicesService,
     private cartService: CartservicesService,
     private wishlist: WishlistservicesService,
     private snackBar: MatSnackBar,
@@ -38,6 +35,7 @@ export class BookdescriptionComponent implements OnInit {
     this.GetCart();
     this.init.emit();
   }
+
   Resize() {
     var textArea = document.getElementById('textarea')!;
     textArea.style.height = 'auto';
@@ -91,9 +89,10 @@ export class BookdescriptionComponent implements OnInit {
   GetCart() {
     this.cartService.GetCart().subscribe((result: any) => {
       this.cartDetail = result.data;
-      this.added = this.cartDetail.some(
+      this.added = this.cartDetail.find(
         (element: any) => element.bookId == this.bookdetails.bookId
       );
+      console.log(this.bookdetails.bookId);
       console.log(this.cartDetail);
     });
   }
@@ -122,5 +121,12 @@ export class BookdescriptionComponent implements OnInit {
           this.total += element.rating;
         });
       });
+  }
+
+  displayrating(rating: any) {
+    if (rating == 0) {
+      return 0;
+    }
+    return rating.toFixed(1);
   }
 }
