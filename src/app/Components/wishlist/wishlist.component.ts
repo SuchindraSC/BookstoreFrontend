@@ -35,16 +35,16 @@ export class WishlistComponent implements OnInit {
         }
         this.snackBar.open(result.message, '', {
           duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'left',
+          //verticalPosition: 'bottom',
+          //horizontalPosition: 'left',
         });
         console.log(result);
       },
       (error) => {
         this.snackBar.open(`${error.error.message}`, '', {
           duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'left',
+          //verticalPosition: 'bottom',
+          //horizontalPosition: 'left',
         });
       }
     );

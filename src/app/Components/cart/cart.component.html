@@ -167,17 +167,12 @@
       *ngIf="cart.length > 0"
       style="display: flex; justify-content: flex-end; padding: 20px"
     >
-    <!-- <button
-        mat-button
-        class="order-but"
-        style="align-self: flex-end"
-        *ngIf="placeorder == 'ordersummary'" 
-      (click)="AddToOrders()"> -->
       <button
         mat-button
         class="order-but"
         style="align-self: flex-end"
-        *ngIf="placeorder == 'ordersummary'" >
+        *ngIf="placeorder == 'ordersummary'" 
+        (click)="AddToOrders()">
         Checkout
       </button>
     </div>

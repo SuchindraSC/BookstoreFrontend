@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataservicesService } from 'src/app/Services/DataService/dataservices.service';
+import { OrderservicesService } from 'src/app/Services/OrderService/orderservices.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
     private cartService: CartservicesService,
     private route: Router,
     private snackBar: MatSnackBar,
-    private data: DataservicesService
+    private data: DataservicesService,
+    private order: OrderservicesService
   ) {}
   user = JSON.parse(localStorage.getItem('BookStoreUser')!);
   @Output('init') init: EventEmitter<any> = new EventEmitter();
@@ -50,6 +52,8 @@ export class CartComponent implements OnInit {
     'Nov',
     'Dec',
   ];
+
+
   ngOnInit(): void {
     this.GetCart();
     this.getAddress();
@@ -157,5 +161,41 @@ export class CartComponent implements OnInit {
       this.cartDetails = result.data;
       console.log(this.cartDetails);
     });
+  }
+
+  AddToOrders() {
+    this.cartDetails.forEach((element: any) => {
+      let date = new Date();
+      let currentDate = this.monthNames[date.getMonth()] + ' ' + date.getDate();
+      let orderData = {
+        UserId: parseInt(this.user.userId),
+        BookId: element.bookId.bookId,
+        AddressId: this.checked,
+        QuantityToBuy: element.quantityToBuy,
+        price: element.bookId.discountPrice,
+      };
+      let orderArr: any = [];
+      orderArr.push(orderData)
+      console.log(orderArr);
+      this.order.AddToOrders(orderArr).subscribe(
+        (result: any) => {
+          console.log(result);
+          this.orderId = result.OrderId;
+          console.log(this.orderId);
+          if (result.success == true) {
+            this.RemoveBook(element);
+            localStorage.setItem('OrderId', this.orderId);
+            this.route.navigateByUrl('/orderplaced');
+          }
+          this.snackBar.open(result.message, '', {
+            duration: 2000,
+          });
+        },
+        (error: HttpErrorResponse) => {
+          this.snackBar.open(error.message, '', { duration: 2500 });
+        }
+      );
+    });
+    
   }
 }

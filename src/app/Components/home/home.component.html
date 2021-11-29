@@ -278,7 +278,7 @@
           <p class="author-name">{{ book["author"] }}</p>
           <div style="display: flex; align-items: center">
             <div class="rating">
-              <p>{{  displayrating(book["rating"]) }}</p>
+              <p>{{ displayrating(book["rating"]) }}</p>
               <i class="material-icons">star</i>
             </div>
             <p class="rating-count">({{ book["count"] }})</p>
@@ -311,9 +311,9 @@
         </div>
       </div>
     </div>
-    <!-- <div>
-      <app-order *ngIf="option == 'orders'"></app-order>
-    </div> -->
+    <div>
+      <app-orders *ngIf="option == 'orders'"></app-orders>
+    </div>
     <app-bookdescription
       *ngIf="option == 'BookDescription'"
       [bookdetails]="bookdetails"

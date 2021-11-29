@@ -1,0 +1,31 @@
+<div
+  class="w-main"
+  *ngFor="let order of OrderDetails"
+  style="margin-bottom: 30px"
+>
+  <div class="w-wrap">
+    <div class="w-book">
+      <div class="wb-con">
+        <div>
+          <img src="{{ order.books.bookImage }}" alt="" width="100px" />
+        </div>
+        <div class="wb-detail">
+          <p class="book-name">{{ order.books.bookName }}</p>
+          <p class="author">{{ order.books.author }}</p>
+          <div class="cost">
+            <p class="rupees">Rs {{ order.books.discountPrice }}</p>
+            <p class="disc">Rs {{ order.books.price }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="order-mes">
+        <i
+          class="material-icons"
+          style="color: #26a541; font-size: 10px; margin-right: 7px"
+          >circle</i
+        >
+        <span class="order-date">Order placed on {{ order.dateOfOrder }}</span>
+      </div>
+    </div>
+  </div>
+</div>

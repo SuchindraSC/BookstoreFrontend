@@ -28,6 +28,8 @@ import { WishlistComponent } from './Components/wishlist/wishlist.component';
 import { PersonaldetailsComponent } from './Components/personaldetails/personaldetails.component';
 
 import { CartComponent } from './Components/cart/cart.component';
+import { OrderplacedComponent } from './Components/orderplaced/orderplaced.component';
+import { OrdersComponent } from './Components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { CartComponent } from './Components/cart/cart.component';
     WishlistComponent,
     PersonaldetailsComponent,
     CartComponent,
+    OrderplacedComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

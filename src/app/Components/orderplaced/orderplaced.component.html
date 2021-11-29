@@ -1,0 +1,127 @@
+<div>
+  <div>
+    <div class="header">
+      <div class="temp"></div>
+      <div
+        class="Logo"
+        [class]="isSearch ? 'media-Logo' : ''"
+        [routerLink]="['/home']"
+      >
+        <img class="logo" src="../../../assets/book.png" alt="" />
+        <p>Bookstore</p>
+      </div>
+      <div class="search-div" [class]="isSearch ? 'media-search-div' : ''">
+        <mat-icon matPrefix matTooltip="Search" *ngIf="!isSearch"
+          >search</mat-icon
+        >
+        <mat-icon
+          matPrefix
+          matTooltip="Search"
+          *ngIf="isSearch"
+          (click)="isSearch = !isSearch"
+          >arrow_back</mat-icon
+        >
+        <input matInput placeholder="Search..." />
+      </div>
+      <div class="icons">
+        <div class="search" *ngIf="!isSearch">
+          <i
+            class="material-icons icon"
+            style="font-size: 25px"
+            (click)="isSearch = !isSearch"
+            >search</i
+          >
+          <p>Search</p>
+        </div>
+        <div class="person">
+          <i class="material-icons icon" [routerLink]="['/home']"
+            >person_outline</i
+          >
+          <!-- <mat-menu #UserProfile="matMenu" class="UserProfile">
+                    <div *ngIf="BookStoreUser != null">
+                      <p class="profile-padding">Hello {{ BookStoreUser.fullName }},</p>
+                      <div class="icon-div my-profile profile-padding"  [routerLink]="['/home']">
+                        <i class="material-icons icons">person_outline</i>
+                        <span>Profile</span>
+                      </div>
+                      <div class="icon-div profile-padding">
+                        <i class="material-icons-outlined">markunread_mailbox</i>
+                        <span>My Orders</span>
+                      </div>
+                      <div class="icon-div profile-padding"  [routerLink]="['/home']">
+                        <i class="material-icons">favorite_border</i>
+                        <span>Wishlist</span>
+                      </div>
+                      <button
+                        mat-menu-item
+                        class="profile-button"
+                        style="margin:15px 60px 10px 35px"
+                        (click)="Logout()"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </mat-menu> -->
+          <p *ngIf="BookStoreUser == null">Profile</p>
+          <p *ngIf="BookStoreUser != null">{{ BookStoreUser.fullName }}</p>
+        </div>
+        <div class="cart" [routerLink]="['/home']">
+          <i class="material-icons-outlined icon">shopping_cart</i>
+          <p>Cart</p>
+        </div>
+      </div>
+      <div class="temp"></div>
+    </div>
+  </div>
+  <div class="OrderPlace-Main">
+    <div class="OrderPlace-Image">
+      <img
+        src="../../../assets/OrderPlacedSuccessfully.jpg"
+        width="70%"
+        height="60%"
+      />
+    </div>
+    <div class="OrderPlace-Text">
+      <p class="OrderPlace-SubText">hurry!!! your order is confirmed</p>
+      <p class="OrderPlace-SubText">
+        the order id is #{{ orderId }} save the order id for
+      </p>
+      <p class="OrderPlace-SubText">further communication..</p>
+    </div>
+
+    <div class="OrderPlace-Table-Main">
+      <div class="OrderPlace-Table">
+        <table>
+          <tr>
+            <th style="width: 5%; padding: 2%">Email us</th>
+            <th style="width: 5%; padding: 2%">Contact us</th>
+            <th style="width: 10%; padding: 2%">Address</th>
+          </tr>
+          <tr class="rowHight">
+            <td>bookstore@gmail.com</td>
+            <td>+91 809564321</td>
+            <td>
+              Sector 14, Gurugram, Haryana - 806754
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="OrderPlace-button-Main">
+        <button
+          mat-flat-button
+          style="background-color: #3371b5; font-family: Roboto; color: white"
+          (click)="GoToHome()"
+        >
+          CONTINUE SHOPPING
+        </button>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-content">
+        <p>Copyright © 2020, Bookstore Private Limited. All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+</div>
