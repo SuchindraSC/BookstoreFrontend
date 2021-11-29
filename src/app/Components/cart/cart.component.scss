@@ -9,8 +9,8 @@
   padding: 20px;
 }
 
-.remove{
-    margin-left: -100px !important;
+.remove {
+  margin-left: -100px !important;
 }
 
 .add-new {
@@ -27,6 +27,7 @@
 .w-book {
   display: flex;
   justify-content: space-between;
+  //margin-top: -30px;
 }
 .wb-con {
   display: flex;
@@ -56,6 +57,7 @@
       font-weight: bold;
       font-family: "Roboto", sans-serif;
       color: #0a0101;
+      margin-top: 0px;
     }
     .disc {
       text-decoration: line-through;
@@ -65,10 +67,14 @@
       color: #9d9d9d;
       align-self: center;
       margin-left: 5px;
+      margin-top: 0px;
     }
   }
 }
-
+.quantity {
+  display: flex;
+  margin-top: 15px;
+}
 .cart-count {
   display: flex;
   input {
@@ -210,6 +216,7 @@
   border-radius: 2px;
   color: white;
   text-transform: uppercase;
+  margin-top: -30px;
 }
 .main-det {
   padding: 20px;

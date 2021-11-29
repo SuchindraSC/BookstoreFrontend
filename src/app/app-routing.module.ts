@@ -15,7 +15,7 @@ const routes: Routes = [
     component: ResetpasswordComponent,
   },
   { path: 'home', component: HomeComponent },
-  { path: 'orderplaced', component: OrderplacedComponent}
+  { path: 'orderplaced', component: OrderplacedComponent },
 ];
 
 @NgModule({

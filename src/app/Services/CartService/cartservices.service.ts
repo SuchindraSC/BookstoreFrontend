@@ -10,7 +10,6 @@ export class CartservicesService {
   constructor(private http: HttpservicesService) {}
   header: any = { headers: { Authorization: 'Bearer ' + this.user.token } };
 
-
   AddBooktoCart(book: any) {
     return this.http.post(
       `${environment.baseUrl}/api/cartaddbook?bookId=${book.bookId}&userId=${this.user.userId}`,

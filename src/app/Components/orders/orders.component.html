@@ -7,11 +7,13 @@
     <div class="w-book">
       <div class="wb-con">
         <div>
+          <p style="font-size: 18px;">Your Order Number is {{ order.orderId }}</p>
           <img src="{{ order.books.bookImage }}" alt="" width="100px" />
         </div>
         <div class="wb-detail">
           <p class="book-name">{{ order.books.bookName }}</p>
           <p class="author">{{ order.books.author }}</p>
+          <p class="quantity">Quantity: {{ order.quantityToBuy }}</p>
           <div class="cost">
             <p class="rupees">Rs {{ order.books.discountPrice }}</p>
             <p class="disc">Rs {{ order.books.price }}</p>

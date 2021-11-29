@@ -21,6 +21,7 @@
     opacity: 1;
   }
 }
+
 .w-wrap {
   padding: 30px;
 }
@@ -31,9 +32,11 @@
 .wb-con {
   display: flex;
   justify-content: space-between;
+  margin-top: -20px;
 }
 .wb-detail {
-  margin-left: 30px;
+  margin-left: -50px;
+  margin-top: 60px;
   .book-name {
     margin-top: 0px;
     margin-bottom: 1px;
@@ -48,8 +51,13 @@
     line-height: 16px;
     margin-bottom: 0px;
   }
+  .quantity{
+      display: flex;
+      margin-top: 5px;
+  }
   .cost {
     display: flex;
+    margin-top: -20px;
     .rupees {
       font-size: 15px;
       line-height: 20px;
